@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+
+<html  xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/home :: head"></head>
+    <body>
+
+        <header th:replace="layout/home :: header"></header>
+
+        <div class="container py-4">
+
+            <div class="card bg-dark text-white">
+                <div class="card-header" >Datos del nuevo alumno</div>
+                <div class="card-body">
+
+                    <div th:object="${alumnos}" th:remove="tag">
+                        <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                            <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+                        </ul>
+                    </div>
+                    <form accept-charset="UTF-8"  th:action="@{/view/form}" th:object="${alumnos}" method="post">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Nombre</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{nombre}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" />   
+                                <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Apellido</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{apellido}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small
+                                       class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('apellido')}" th:errors="*{apellido}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">cedula</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{cedula}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> 
+                                <small
+                                    class="form-text text-danger"
+                                    th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></small>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">Edad</label>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{edad}" class="form-control"
+                                       th:errorclass="'form-control alert-danger'" /> <small
+                                       class="form-text text-danger"
+                                       th:if="${#fields.hasErrors('edad')}" th:errors="*{edad}"></small><!--
+                                -->						</div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">CARRERA</label>
+                            <div class="col-sm-6">
+                                <select required th:field="*{carrera}" class="btn btn-primary btn-block">
+                                    <option value="">SELECCIONAR </option>
+                                    <option th:each="carrera:${carreras}" th:value="${carrera.carrerasId}" 
+                                            th:utext="${carrera.descripcion}"> </option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <input type="submit" value="Crear Alumno" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </form>
+                    </body>
+                    <footer th:replace="layout/home :: footer"></footer>
+                    </html>
+

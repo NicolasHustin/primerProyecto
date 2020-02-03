@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/home :: head"> </head>
+    <body>
+        <header th:replace="layout/home :: header"></header>
+        <h1 class="text-scondary border border-succes"><marquee> ALUMNOS </marquee></h1>
+        <div class="container border border-succes"  th:if="${!alumnos.empty}" style="margin-left: 30px; margin-right: 30px;">
+            <table class="table table-hover">
+                <thead>
+                <th>id</th>
+                <th>nombre</th>
+                <th>apellido</th>
+                <th>edad</th>
+                <th>Carrera</th>
+                <th>ACCION</th>
+                 <th>ACCION</th>
+                </thead>
+                <tbody>
+                    <tr th:each="alumno:${alumnos}">
+                        <td th:text="${alumno.id}"></td>                
+                        <td th:text="${alumno.nombre}"></td>
+                        <td th:text="${alumno.apellido}"></td>
+                        <td th:text="${alumno.edad}"></td>
+                        <td th:text="${alumno.carrerasId.descripcion}"></td>
+                        <td ><a class="btn btn-secondary"  th:href="@{/view/form/}+${alumno.id}"> EDITAR</a></td>
+                         <td ><a class="btn btn-secondary" onclick="confirm('seguro desea eliminar?')" th:href="@{/view/delette/}+${alumno.id}"> ELIMINAR</a></td>
+                    </tr>
+                 <div class="container" type="text" >
+                <a style="background-color: greenyellow" th:href="@{/alumnos/ver}">formato simple</a>
+                 </div>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${alumnos.empty}">
+            <h4>
+                NO HAY NINGUN ALUMNO
+            </h4>
+        </div>
+    </body>
+    <footer th:replace="layout/home :: footer"></footer>
+</html>

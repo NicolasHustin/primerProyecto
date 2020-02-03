@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<html  xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/home :: head"></head>
+    <body>
+        <header th:replace="layout/home :: header"> </header>
+
+        <div class="container py-4">
+            <div class="card bg-dark text-white">
+                <div class="card-header" >Ingresar el ID del alumno</div>
+                <div class="card-body">
+                    <div>
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label">ID alumno</label>
+                            <div class="col-sm-6">
+                                <input id="id-delete" type="text" th:name="id" class="form-control" /> 
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-sm-6">
+                                <button onclick="redirect()" type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Buscar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel"><font color="black">Datos alumno</font></h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label" style="color: black;">Nombre: </label>
+                                        <div class="col-sm-6">
+                                            <label id="label-name" style="color: black;"></label> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label" style="color: black;">Apellido</label>
+                                        <div class="col-sm-6">
+                                            <label id="label-apellido" style="color: black;" 
+                                                   th:text="${aDelete.apellido}" /> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" style="color: black;">Cedula</label>
+                                        <div class="col-sm-6">
+                                            <label id="label-ci" style="color: black; margin-left: 53px"
+                                                   th:text="${aDelete.cedula}" /> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-2 col-form-label" style="color: black;">Edad</label>
+                                        <div class="col-sm-6">
+                                            <label id="label-edad" style="color: black; margin-left: 53px" 
+                                                   th:text="${aDelete.edad}" /> 
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-sm-3 col-form-label" style="color: black;">CARRERA</label>
+                                        <div class="col-sm-6">
+                                            <div class="col-sm-6">
+                                                <label id="label-carrera" style="color: black; " 
+                                                       th:text="${aDelete.carrera}" /> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="hidden" id="hidden-id"/>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary" onclick="nico()">Borrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </body>
+                    <footer th:replace="layout/home :: footer"></footer>
+                    </html>
+

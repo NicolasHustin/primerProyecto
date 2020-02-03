@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/home :: head"></head>
+    <body >
+        <header th:replace="layout/home :: header"></header>
+        <h1 class="text-scondary border border-succes container " style="align-content: center">CARRERAS </h1>
+        <table class="container border table table-hover">
+            <thead>
+            <th>id</th>
+            <th>Descripcion</th>
+        </thead>
+        <tbody>
+            <tr th:each="alumno:${carreras}">
+                <td th:text="${alumno.carrerasId}"></td>
+                <td th:text="${alumno.descripcion}"></td>
+            </tr>
+        <div class="container">
+        <a class="container" style="background-color: #b8b894" th:href="@{/carreras/ver}">formato controller</a>
+        </div>
+    </tbody>
+</table>
+</body>
+<footer th:replace="layout/home :: footer"></footer>
+</html>
